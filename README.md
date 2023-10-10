@@ -1,4 +1,4 @@
-# CRC-Diagnoser: 基于ResNet和ViT的医学影像识别
+# CRC-Diagnose: 基于ResNet和ViT的医学影像识别
 
 ## Quick Start
 
