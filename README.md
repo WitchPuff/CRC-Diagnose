@@ -1,5 +1,5 @@
 # CRC-Diagnose: 基于ResNet和ViT的医学影像识别
-
+该项目使用PyTorch开发，基于自主实现的ResNet和ViT模型及NCT-CRC-HE-100K数据集，实现了直结肠癌医学图像识别，配备了基于Flask和Vue的用户友好型Web演示。
 ## Quick Start
 
 ### Python环境
@@ -52,7 +52,7 @@ python gui.backend.app
 
 在此处查看[数据集](https://zenodo.org/record/1214456)。
 
-下载[CRC-VAL-HE-7K.zip](https://zenodo.org/record/1214456/files/CRC-VAL-HE-7K.zip?download=1)至根目录，也可以下载整个数据集[NCT-CRC-HE-100K](https://zenodo.org/record/1214456/files/NCT-CRC-HE-100K.zip?download=1)，但训练太久了。
+下载[CRC-VAL-HE-7K.zip](https://zenodo.org/record/1214456/files/CRC-VAL-HE-7K.zip?download=1)至根目录，也可以下载整个数据集[NCT-CRC-HE-100K](https://zenodo.org/record/1214456/files/NCT-CRC-HE-100K.zip?download=1)。
 
 运行`utils/data.py`，将自动处理`CRC-VAL-HE-7K.zip`，预处理后的数据将分为test（`data_0.pt`, `label_0.pt`)、train、valid存放在`data/`中。
 
