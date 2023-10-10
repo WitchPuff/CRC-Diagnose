@@ -12,8 +12,9 @@
     </div> 
 
     <h3 :style="{ marginTop: '2%' }">Label: {{ prediction }}</h3>
-    <h4 :style="{ marginTop: '-2%' }">Model:
+    <h4 :style="{ marginTop: '-1%' }">Model:
       <select v-model="model" style="margin-left: 10px; height: 1.5em;">
+        <option value="">--model--</option>
         <option value="resnet">ResNet</option>
         <option value="vit">VIT</option>
       </select>
@@ -34,6 +35,8 @@
       <br>
       <span :style="{marginLeft: '1%', fontSize: '0.7em'}">{{ state }}</span>
     </h4>
+    <br>
+    <h4 :style="{ marginTop: '-2%' }">{{ message }}</h4>
     <base-button :style="{ marginTop: '-2%', fontSize: '1.3em', lineHeight: '1.2em' }" slot="footer" type="primary" fill @click="predict()">Predict</base-button>
 
   </card>
@@ -48,7 +51,8 @@ export default {
       img: null,
       model: null,
       prediction: null,
-      state: null
+      state: null,
+      message: null
     };
   },
   methods: {
@@ -69,56 +73,63 @@ export default {
       .catch(error => console.error(error));
     },
     predict() {
-    axios.get('http://localhost:5000/api/predict/' + this.model + '/' + this.img)
-    .then(response => {
-      // 这里处理服务器的响应
-      this.prediction = response.data.result;
-      console.log(response.data.result);
-    })
-    .catch(error => console.error(error));
+      if (this.img && this.model) {
+        this.message = 'Diagnosing...';
+        axios.get('http://localhost:5000/api/predict/' + this.model + '/' + this.img)
+        .then(response => {
+          // 这里处理服务器的响应
+          this.message = null;
+          this.prediction = response.data.result;
+          console.log(response.data.result);
+        })
+        .catch(error => console.error(error));
+      }
+      else {
+        this.message = 'Upload a image / choose a model first.';
+      }
   },
   voice4model() {
-  // Check if the browser supports the SpeechRecognition API
-  if ('webkitSpeechRecognition' in window) {
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-    recognition.start();
-    console.log('started');
-    this.state = 'Recording started. Say 1/2 to choose the model for diagnosis.'
-    recognition.onresult = (event) => {
-      // Get the spoken text
-      this.state = 'Transcribing...'
-      const speechResult = event.results[0][0].transcript[0];
-      console.log(speechResult);
-      this.state = speechResult;
-      // Check what was said and select the appropriate model
-      if (speechResult === '1') {
-        this.model = 'resnet';
-        console.log('resnet');
+    // Check if the browser supports the SpeechRecognition API
+    if ('webkitSpeechRecognition' in window) {
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recognition.start();
+      console.log('started');
+      this.state = 'Recording started. Say 1/2 to choose the model for diagnosis.'
+      recognition.onresult = (event) => {
+        // Get the spoken text
+        this.state = 'Transcribing...'
+        const speechResult = event.results[0][0].transcript[0];
+        console.log(speechResult);
+        this.state = speechResult;
+        // Check what was said and select the appropriate model
+        if (speechResult === '1') {
+          this.model = 'resnet';
+          console.log('resnet');
+          recognition.stop();
+        } else if (speechResult === '2') {
+          this.model = 'vit';
+          console.log('vit');
+          recognition.stop();
+        }
+        // Stop the recognition
         recognition.stop();
-      } else if (speechResult === '2') {
-        this.model = 'vit';
-        console.log('vit');
-        recognition.stop();
-      }
-      // Stop the recognition
-      recognition.stop();
-      console.log('stopped');
-      this.state = null;
-    };
+        console.log('stopped');
+        this.state = null;
+      };
 
-    recognition.onerror = (event) => {
-      // Handle any errors
-      recognition.stop();
-      console.error('Error occurred in recognition:', event.error);
-      console.log('stopped');
-      this.state = "Hearing nothing, recording stopped.";
-    };
-  } else {
-    console.error('SpeechRecognition API is not supported in this browser.');
-  }
+      recognition.onerror = (event) => {
+        // Handle any errors
+        recognition.stop();
+        console.error('Error occurred in recognition:', event.error);
+        console.log('stopped');
+        this.state = "Hearing nothing, recording stopped.";
+      };
+    } else {
+      console.error('SpeechRecognition API is not supported in this browser.');
+    }
 },
 
 

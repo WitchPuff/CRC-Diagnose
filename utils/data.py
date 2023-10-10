@@ -99,6 +99,6 @@ def load_data(batch, data_path, mini_sample=False): # 读取数据，返回迭�
             loader = DataLoader(set, batch_size=batch, sampler=RandomSampler(set, replacement=True, num_samples=len(set), generator=torch.Generator().manual_seed(seed)))
             loaders.append(loader)
     return loaders    
-    
+
 if __name__ == '__main__':
     process('CRC-VAL-HE-7K.zip')

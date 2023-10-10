@@ -90,6 +90,7 @@ def predict(model, net, pt, dataset, img):
         return False, "ERROR: Fail to load parameters"
     transform = transforms.Compose([
         transforms.ToTensor(),
+        transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)) # 需要保持数据预处理的同等处理条件！
     ])
     x = transform(Image.open(img)).unsqueeze(0)
     x = x.to(device)

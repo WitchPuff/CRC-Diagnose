@@ -63,7 +63,7 @@ def predict(model, filename):
         pt = os.path.join(current_file_path, "../../models/ViT_CRC.pt")
     else:
         return "ERROR: No Such Model", 400
-    label = predictImg(model=model, net=net, pt=pt, dataset='CRC-VAL-HE-7K', img=filename, num_classes=9)
+    label = predictImg(model=model, net=net, pt=pt, dataset='CRC-VAL-HE-7K', img=filename)
     if not label[0]:
         return label[1], 400
     else:
