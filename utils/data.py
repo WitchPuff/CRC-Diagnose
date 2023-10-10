@@ -67,7 +67,6 @@ def process(dataset, data_path='data/'):
         # np.save(f'{data_path}/{dataset[:-4]}/label_{i}.npy', label)
         torch.save(label, f'{data_path}/{dataset[:-4]}/label_{i}.pt')
 
-# process('CRC-VAL-HE-7K.zip')
 # process('NCT-CRC-HE-100K.zip')
 
 
@@ -97,7 +96,9 @@ def load_data(batch, data_path, mini_sample=False): # 读取数据，返回迭�
             data = torch.load(f'{data_path}/data_{i}.pt')
             label = torch.load(f'{data_path}/label_{i}.pt').to(torch.long)
             set = CRC(data, label)
-            loader = DataLoader(set, sampler=RandomSampler(set, replacement=True, num_samples=len(set), generator=torch.Generator().manual_seed(seed)))
+            loader = DataLoader(set, batch_size=batch, sampler=RandomSampler(set, replacement=True, num_samples=len(set), generator=torch.Generator().manual_seed(seed)))
             loaders.append(loader)
     return loaders    
     
+if __name__ == '__main__':
+    process('CRC-VAL-HE-7K.zip')
