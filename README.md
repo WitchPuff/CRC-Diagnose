@@ -105,3 +105,7 @@ python main.py predict --img data/back.tif --model ViT
 ![image-20231010200111965](https://raw.githubusercontent.com/WitchPuff/typora_images/main/img/202310102001069.png)
 
 ![image-20231010200049544](https://raw.githubusercontent.com/WitchPuff/typora_images/main/img/202310102000689.png)
+
+## Citation
+
+vue前端使用了该[模板](https://github.com/creativetimofficial/vue-black-dashboard)。
