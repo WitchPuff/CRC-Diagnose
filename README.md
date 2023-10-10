@@ -8,7 +8,7 @@
 pip install -r requirements.txt
 ```
 
-### 前端VUE
+### 前端Vue
 
 #### 1、安装 Node.js 和 npm：
 
@@ -33,7 +33,7 @@ npm install -g @vue/cli
 vue --version
 ```
 
-#### 3、运行vue
+#### 3、运行Vue
 
 ```shell
 cd gui/frontend
@@ -42,7 +42,7 @@ npm run serve
 
 ### 后端Flask
 
-#### 运行flask服务器
+#### 运行Flask服务器
 
 ```shell
 python gui.backend.app
@@ -108,4 +108,4 @@ python main.py predict --img data/back.tif --model ViT
 
 ## Citation
 
-vue前端使用了该[模板](https://github.com/creativetimofficial/vue-black-dashboard)。
+前端使用了该[Vue模板](https://github.com/creativetimofficial/vue-black-dashboard)。
