@@ -1,11 +1,7 @@
 bidict==0.22.1
-efficientnet_pytorch==0.7.1
 Flask==2.0.2
 Flask_Cors==4.0.0
 matplotlib==3.7.1
 numpy==1.24.1
-Pillow==9.3.0
 Pillow==10.0.1
-torch==2.1.0.dev20230419+cu118
-torchvision==0.16.0.dev20230419+cu118
 tqdm==4.65.0
