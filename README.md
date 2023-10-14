@@ -37,6 +37,7 @@ vue --version
 
 ```shell
 cd gui/frontend
+npm install
 npm run serve
 ```
 
