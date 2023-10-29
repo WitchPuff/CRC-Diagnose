@@ -46,7 +46,7 @@ npm run serve
 #### 运行Flask服务器
 
 ```shell
-python gui.backend.app
+python -m gui.backend.app
 ```
 
 ### 准备数据
