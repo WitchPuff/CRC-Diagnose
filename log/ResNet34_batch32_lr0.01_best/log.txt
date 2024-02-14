@@ -1,0 +1,8 @@
+para: {'architecture': 'ResNet34', 'optimizer': 'SGD', 'batch size': 32, 'epoch': 30, 'learning_rate': 0.01, 'pretrained': False}
+min_train_loss: 0.001 at epoch 27
+max_train_acc: 99.9 at epoch 27
+min_valid_loss: 0.193 at epoch 20
+max_valid_acc: 93.2 at epoch 20
+min_test_loss: 0.149 at epoch 27
+max_test_acc: 95.6 at epoch 19
+time: 8.59s / epoch

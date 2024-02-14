@@ -58,8 +58,6 @@ def score(net, data_iter, loss, num_classes):
     total = 0
     correct = torch.zeros(1).cuda()
     los = torch.zeros(1).cuda()
-    test = 0
-    test2 = 0
     for _, (x,y) in tqdm(enumerate(data_iter), desc="Validating", total=len(data_iter)):
         x, y = x.to(device), y.to(device)
         haty = net(x)
@@ -70,7 +68,6 @@ def score(net, data_iter, loss, num_classes):
         total += y.size(0)
     los = los.item() / len(data_iter)
     acc = correct.item() / total
-    print(f"{test}/{total}", f"{test2}/{total}")
     return los, acc
 
 @torch.no_grad() # 使新增的tensor没有梯度，使带梯度的tensor能够进行原地运算

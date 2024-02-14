@@ -54,13 +54,13 @@ def predict(model, filename):
     filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     if model.lower() == 'resnet34' or model.lower() == 'resnet':
         net = ResNet(BasicBlock, (16,32,64,128), (3,4,6,3), num_classes=9, type=34)
-        pt = os.path.join(current_file_path, "../../models/ResNet34_CRC.pt")
+        pt = "models\\ResNet34_CRC.pt"
     # elif model.lower() == 'resnet50':
     #     net = ResNet(BottleNeck, (16,32,64,128), (3,4,6,3), num_classes=9, type=50)
     #     pt = ""
     elif model.lower() == 'vit':
         net = ViT(num_classes=9)
-        pt = os.path.join(current_file_path, "../../models/ViT_CRC.pt")
+        pt = "models\\ViT_CRC.pt"
     else:
         return "ERROR: No Such Model", 400
     label = predictImg(model=model, net=net, pt=pt, dataset='CRC-VAL-HE-7K', img=filename)

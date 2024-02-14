@@ -80,6 +80,7 @@ export default {
           // 这里处理服务器的响应
           this.message = null;
           this.prediction = response.data.result;
+          this.speakPrediction(this.prediction);
           console.log(response.data.result);
         })
         .catch(error => console.error(error));
@@ -88,6 +89,20 @@ export default {
         this.message = 'Upload a image / choose a model first.';
       }
   },
+  speakPrediction(prediction) {
+  // Check if the SpeechSynthesis API is available
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(prediction);
+
+    // Optionally, you can set voice and other properties here
+    // utterance.voice = ...
+
+    // Speak the prediction
+    speechSynthesis.speak(utterance);
+  } else {
+    console.log('SpeechSynthesis not supported');
+  }
+},
   voice4model() {
     // Check if the browser supports the SpeechRecognition API
     if ('webkitSpeechRecognition' in window) {

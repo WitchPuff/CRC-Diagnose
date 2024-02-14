@@ -12,7 +12,7 @@ def main():
     parser_cmd = parser.add_subparsers(dest='command', help='Available commands')
     train_cmd = parser_cmd.add_parser('train', help='Train the model')  # 创建一个命令对象
     train_cmd.add_argument('--model', type=str, default='ResNet34', help='Type of the model used')
-    train_cmd.add_argument('--data', type=str, default='data/', help='Path to the processed data directory')
+    train_cmd.add_argument('--data', type=str, default='data/CRC-VAL-HE-7K/', help='Path to the processed data directory')
     train_cmd.add_argument('--dataset', type=str, default='CRC-VAL-HE-7K', help='Path to the dataset directory')
     train_cmd.add_argument('--log', type=str, default='log/', help='Path to save trained models and training logs')
     train_cmd.add_argument('--epochs', type=int, default=40, help='Number of training epochs')

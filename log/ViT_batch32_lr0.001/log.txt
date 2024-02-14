@@ -1,0 +1,8 @@
+para: {'architecture': 'ViT', 'optimizer': 'SGD', 'batch size': 32, 'epoch': 30, 'learning_rate': 0.001, 'pretrained': False}
+min_train_loss: 0.011 at epoch 7
+max_train_acc: 88.0 at epoch 7
+min_valid_loss: 0.606 at epoch 21
+max_valid_acc: 81.0 at epoch 16
+min_test_loss: 0.544 at epoch 6
+max_test_acc: 83.2 at epoch 6
+time: 125.55s / epoch

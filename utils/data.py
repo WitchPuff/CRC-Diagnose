@@ -24,7 +24,7 @@ def process(dataset, data_path='data/'):
     classes = getMap(dataset[:-4])
     file_list = [img for img in ZipFile(dataset, 'r').namelist() if img[-3:] == "tif"]
     random.shuffle(file_list)
-    file_list = file_list[:15000]
+    file_list = file_list[:5000]
     train_list = file_list[:int(len(file_list)*0.8)]
     test_list = file_list[int(len(file_list)*0.8):int(len(file_list)*0.9)]
     valid_list = file_list[int(len(file_list)*0.9):]

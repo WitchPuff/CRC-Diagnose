@@ -10,16 +10,21 @@ const Icons = () => import(/* webpackChunkName: "common" */ "@/pages/Icons.vue")
 const Maps = () => import(/* webpackChunkName: "common" */ "@/pages/Maps.vue");
 const Typography = () => import(/* webpackChunkName: "common" */ "@/pages/Typography.vue");
 const TableList = () => import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
+const Login = () => import(/* webpackChunkName: "common" */ "@/pages/Login.vue");
 
 const routes = [
   {
     path: "/",
+    redirect: "/login", // Redirect to the login page initially
+  },
+  {
+    path: "/content",
     component: DashboardLayout,
-    redirect: "/dashboard",
+    redirect: "/content/dashboard", 
     children: [
       {
         path: "dashboard",
-        name: "dashboard",
+        name: "Dashboard",
         component: Dashboard
       },
       {
@@ -28,9 +33,9 @@ const routes = [
         component: Profile
       },
       {
-        path: "notifications",
-        name: "notifications",
-        component: Notifications
+        path: "login",
+        name: "login",
+        component: Login
       },
       {
         path: "icons",
@@ -54,7 +59,14 @@ const routes = [
       }
     ]
   },
-  { path: "*", component: NotFound },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
+  },
+  {
+    path: "*", component: NotFound
+  }
 ];
 
 /**
